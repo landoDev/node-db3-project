@@ -23,8 +23,11 @@ function findSteps(id){
     .orderBy('stp.step_number')
     .where({id})
 }
-function add(){
-    return
+function add(scheme){
+    return db('schemes').insert(scheme, "id")
+    .then(([id])=>{
+        return findById(id);
+    });
 }
 function update(){
     return
