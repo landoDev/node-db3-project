@@ -29,8 +29,8 @@ function add(scheme){
         return findById(id);
     });
 }
-function update(){
-    return
+function update(changes, id){
+    return db('schemes').where({id}).update(changes);
 }
 function remove(){
     return
