@@ -16,12 +16,10 @@ function findById(id){
     return db('schemes').where({id}).first();
 }
 function findSteps(id){
-    //select sch.scheme_name, stp.step_number, stp.instructions from steps as stp join schemes as sch on stp.scheme_id = sch.id where sch.id = 2 order by stp.step_number;
-    return db.select('sch.scheme_name', 'stp.step_number', 'stp.instructions')
-    .from('steps as stp')
-    .join('schemes as sch', 'stp.scheme_id = sch.id')
-    .orderBy('stp.step_number')
-    .where({id})
+    return db('steps as stp')
+    .join('schemes as sch', 'sch.id', 'stp.scheme_id')
+    .select('stp.step_number', 'stp.instructions', 'sch.scheme_name')
+    .orderBy('stp.step_number');
 }
 function add(scheme){
     return db('schemes').insert(scheme, "id")
