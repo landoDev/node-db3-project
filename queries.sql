@@ -3,11 +3,9 @@
 -- Display the ProductName and CategoryName for all products in the database. Shows 77 records.
 SELECT p.ProductName, c.CategoryName FROM Product as p JOIN Category as c ON p.CategoryId = c.Id;
 -- Display the order Id and shipper CompanyName for all orders placed before August 9 2012. Shows 429 records.
-SELECT od.OrderId, o.OrderDate FROM  OrderDetail as od
-JOIN order as o 
-ON od.OrderId = o.Id
+SELECT o.id, s.CompanyName FROM [Order] as o
+JOIN Shipper  as s ON o.ShipVia = s.Id
 WHERE o.OrderDate < date('2012-08-09');
--- order comes up as a syntax error because I think it was reading it as a keyword. Just check if it was right cuz its not my fault if the db is asking for something that's a keyword
 
 -- Display the name and quantity of the products ordered in order with Id 10251. Sort by ProductName. Shows 3 records.
 SELECT od.Quantity, p.ProductName 
